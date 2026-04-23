@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>友情链接 — Wang Suhang</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="alternate" type="application/rss+xml" title="Wang Suhang's Blog" href="/feed.html">
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="data-stream data-stream-left" aria-hidden="true"></div>
+  <div class="data-stream data-stream-right" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-hex">⬡</span><span class="logo-text">WSH</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link" data-i18n="nav.home">首页</a></li>
+        <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">博客</a></li>
+        <li><a href="gallery.html" class="nav-link" data-i18n="nav.gallery">相册</a></li>
+        <li><a href="friends.html" class="nav-link active">友链</a></li>
+        <li><a href="guestbook.html" class="nav-link">留言</a></li>
+        <li><a href="about.html" class="nav-link" data-i18n="nav.about">关于</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">◐</span></button>
+        <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link" data-i18n="nav.home">首页</a>
+      <a href="blog.html" class="mobile-link" data-i18n="nav.blog">博客</a>
+      <a href="gallery.html" class="mobile-link" data-i18n="nav.gallery">相册</a>
+      <a href="friends.html" class="mobile-link">友链</a>
+      <a href="guestbook.html" class="mobile-link">留言</a>
+      <a href="about.html" class="mobile-link" data-i18n="nav.about">关于</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container page-header-content">
+      <div class="page-tag mono">// Friends</div>
+      <h1 class="page-title">友情链接</h1>
+      <p class="page-subtitle">互联网上有趣的灵魂们</p>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="friends-grid" id="friendsGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Apply section -->
+      <div class="friends-apply fade-in">
+        <div class="friends-apply-title">🤝 申请友链</div>
+        <p class="friends-apply-desc">
+          如果你也有自己的个人网站，欢迎来交换友链！<br>
+          请在<a href="guestbook.html" style="color:var(--accent);">留言板</a>留下你的网站信息，或发邮件联系我。
+        </p>
+        <div style="font-family:var(--font-mono);font-size:0.8rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;text-align:left;display:inline-block;max-width:400px;line-height:1.9;">
+          <div><span style="color:var(--accent);">名称：</span>你的网站名称</div>
+          <div><span style="color:var(--accent);">链接：</span>https://yoursite.com</div>
+          <div><span style="color:var(--accent);">描述：</span>一句话介绍</div>
+          <div><span style="color:var(--accent);">头像：</span>头像图片链接（可选）</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo-hex">⬡</span><span class="footer-name">Wang Suhang</span></div>
+        <div class="footer-links">
+          <a href="blog.html">博客</a><a href="gallery.html">相册</a>
+          <a href="friends.html">友链</a><a href="guestbook.html">留言</a>
+          <a href="feed.html">RSS</a>
+        </div>
+        <div class="footer-copy">© 2026 Wang Suhang · Tokyo</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/matrix.js?v=3"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/fx-panel.js"></script>
+  <script src="js/friends.js"></script>
+</body>
+</html>

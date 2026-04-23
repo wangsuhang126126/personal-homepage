@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wang Suhang — Personal Space</title>
+  <meta name="description" content="Wang Suhang's personal website - Blog, Gallery, and more">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech.css?v=2">
+  <link rel="alternate" type="application/rss+xml" title="Wang Suhang's Blog" href="/feed.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
+</head>
+<body class="index-page">
+  <!-- Matrix rain canvas (behind particles) -->
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <!-- Particle canvas -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <!-- Side data streams -->
+  <div class="data-stream data-stream-left" aria-hidden="true"></div>
+  <div class="data-stream data-stream-right" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-hex">⬡</span>
+        <span class="logo-text">WSH</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active" data-i18n="nav.home">首页</a></li>
+        <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">博客</a></li>
+        <li><a href="gallery.html" class="nav-link" data-i18n="nav.gallery">相册</a></li>
+        <li><a href="friends.html" class="nav-link">友链</a></li>
+        <li><a href="guestbook.html" class="nav-link">留言</a></li>
+        <li><a href="about.html" class="nav-link" data-i18n="nav.about">关于</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="theme-icon">◐</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link" data-i18n="nav.home">首页</a>
+      <a href="blog.html" class="mobile-link" data-i18n="nav.blog">博客</a>
+      <a href="gallery.html" class="mobile-link" data-i18n="nav.gallery">相册</a>
+      <a href="friends.html" class="mobile-link">友链</a>
+      <a href="guestbook.html" class="mobile-link">留言</a>
+      <a href="about.html" class="mobile-link" data-i18n="nav.about">关于</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span data-i18n="hero.badge">在线中</span>
+        <span style="margin-left:6px;opacity:0.5;">·</span>
+        <span style="margin-left:6px;font-size:0.7rem;opacity:0.7;">Tokyo, Japan</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line" data-i18n="hero.greeting">你好，我是</span>
+        <span class="title-name glitch" data-i18n="hero.name" data-text="王苏杭">王苏杭</span>
+      </h1>
+      <p class="hero-subtitle typing-text" data-i18n="hero.subtitle">探索者 · 创作者 · 记录者</p>
+      <div class="hero-actions">
+        <a href="blog.html" class="btn btn-primary">
+          <span data-i18n="hero.readBlog">阅读博客</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="about.html" class="btn btn-ghost">
+          <span data-i18n="hero.aboutMe">关于我</span>
+        </a>
+      </div>
+
+      <!-- Floating tech tags -->
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+        <span style="padding:4px 12px;border:1px solid rgba(0,212,255,0.2);border-radius:999px;font-size:0.7rem;font-family:var(--font-mono);color:var(--text-muted);">ByteDance Japan</span>
+        <span style="padding:4px 12px;border:1px solid rgba(124,58,237,0.2);border-radius:999px;font-size:0.7rem;font-family:var(--font-mono);color:var(--text-muted);">Solar PV ☀️</span>
+        <span style="padding:4px 12px;border:1px solid rgba(0,212,255,0.2);border-radius:999px;font-size:0.7rem;font-family:var(--font-mono);color:var(--text-muted);">Photography 📷</span>
+        <span style="padding:4px 12px;border:1px solid rgba(124,58,237,0.2);border-radius:999px;font-size:0.7rem;font-family:var(--font-mono);color:var(--text-muted);">Tokyo 🗼</span>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-label="Scroll down">
+      <div class="scroll-line"></div>
+      <span data-i18n="hero.scroll">向下滚动</span>
+    </div>
+  </section>
+
+  <!-- Latest Posts -->
+  <section class="section" id="latest">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="section.latest">最新文章</div>
+        <h2 class="section-title" data-i18n="section.latestTitle">近期写作</h2>
+      </div>
+      <div class="posts-grid" id="latestPosts"></div>
+      <div class="section-footer">
+        <a href="blog.html" class="btn btn-outline" data-i18n="section.viewAll">查看全部</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Preview -->
+  <section class="section section-dark" id="gallery-preview">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag" data-i18n="section.gallery">相册</div>
+        <h2 class="section-title" data-i18n="section.galleryTitle">光影记录</h2>
+      </div>
+      <div class="gallery-grid" id="galleryPreview"></div>
+      <div class="section-footer">
+        <a href="gallery.html" class="btn btn-outline" data-i18n="section.viewGallery">进入相册</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-hex">⬡</span>
+          <span class="footer-name">Wang Suhang</span>
+        </div>
+        <div class="footer-links">
+          <a href="blog.html" data-i18n="nav.blog">博客</a>
+          <a href="gallery.html" data-i18n="nav.gallery">相册</a>
+          <a href="friends.html">友链</a>
+          <a href="guestbook.html">留言</a>
+          <a href="feed.html">RSS</a>
+          <a href="about.html" data-i18n="nav.about">关于</a>
+        </div>
+        <div class="footer-copy">© 2026 Wang Suhang · Tokyo</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/matrix.js?v=3"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/fx-panel.js"></script>
+  <script src="js/bg-switcher.js"></script>
+</body>
+</html>

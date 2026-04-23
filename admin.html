@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台管理 — Wang Suhang</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech.css?v=2">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-hex">⬡</span><span class="logo-text">WSH</span>
+      </a>
+      <div style="flex:1;display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+        <span>/</span><span style="color:var(--accent);">Admin</span>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">◐</span></button>
+        <a href="index.html" class="btn btn-ghost btn-sm" style="font-size:0.8rem;">← 返回网站</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-nav-title">内容</div>
+      <button class="admin-nav-link active" data-panel="new-post">
+        <span>✏</span> <span data-i18n="admin.newPost">写新文章</span>
+      </button>
+      <button class="admin-nav-link" data-panel="posts-list">
+        <span>📋</span> <span data-i18n="admin.posts">文章管理</span>
+      </button>
+      <div class="admin-nav-title">媒体</div>
+      <button class="admin-nav-link" data-panel="media">
+        <span>🖼</span> <span data-i18n="admin.gallery">媒体管理</span>
+      </button>
+      <div class="admin-nav-title">社交</div>
+      <button class="admin-nav-link" data-panel="friends-admin">
+        <span>🤝</span> 友链管理
+      </button>
+      <div class="admin-nav-title">站点</div>
+      <button class="admin-nav-link" data-panel="settings">
+        <span>⚙</span> <span data-i18n="admin.settings">站点设置</span>
+      </button>
+    </aside>
+
+    <main class="admin-main">
+
+      <!-- Panel: New/Edit Post -->
+      <div id="panelNewPost" class="admin-panel">
+        <h2 class="admin-title" id="editorTitle" data-i18n="admin.newPost">写新文章</h2>
+        <div class="editor-form">
+          <input type="hidden" id="editingId">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" data-i18n="admin.title">文章标题</label>
+              <input type="text" class="form-input" id="postTitle" placeholder="输入文章标题...">
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="admin.subtitle">副标题</label>
+              <input type="text" class="form-input" id="postSubtitle" placeholder="输入副标题...">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" data-i18n="admin.tag">标签</label>
+              <input type="text" class="form-input" id="postTag" placeholder="e.g. 技术, 生活, 摄影">
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="admin.lang">语言</label>
+              <select class="form-select" id="postLang">
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">摘要（可选）</label>
+            <textarea class="form-textarea" id="postExcerpt" rows="2" placeholder="文章摘要（不填则自动截取正文）"></textarea>
+          </div>
+
+          <!-- Multilingual binding -->
+          <div class="form-group">
+            <label class="form-label" style="margin-bottom:10px;">多语言版本绑定（可选）</label>
+            <div class="linked-posts-row">
+              <div class="linked-post-field">
+                <span class="linked-post-label">中文版文章 ID</span>
+                <input type="text" class="form-input" id="linkedZh" placeholder="留空则不绑定">
+              </div>
+              <div class="linked-post-field">
+                <span class="linked-post-label">日文版文章 ID</span>
+                <input type="text" class="form-input" id="linkedJa" placeholder="留空则不绑定">
+              </div>
+              <div class="linked-post-field">
+                <span class="linked-post-label">英文版文章 ID</span>
+                <input type="text" class="form-input" id="linkedEn" placeholder="留空则不绑定">
+              </div>
+            </div>
+            <div style="font-size:0.72rem;color:var(--text-muted);margin-top:6px;font-family:var(--font-mono);">
+              // 填写同一篇文章其他语言版本的文章 ID，读者可一键切换语言
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="admin.content">正文内容</label>
+            <div class="editor-area">
+              <div class="editor-toolbar">
+                <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
+                <button class="toolbar-btn" data-cmd="italic"><i>I</i></button>
+                <button class="toolbar-btn" data-cmd="underline"><u>U</u></button>
+                <button class="toolbar-btn" data-cmd="strikeThrough">S̶</button>
+                <span style="width:1px;background:var(--border);margin:0 4px;align-self:stretch;"></span>
+                <button class="toolbar-btn" data-cmd="h2">H2</button>
+                <button class="toolbar-btn" data-cmd="h3">H3</button>
+                <button class="toolbar-btn" data-cmd="insertUnorderedList">• List</button>
+                <button class="toolbar-btn" data-cmd="insertOrderedList">1. List</button>
+                <span style="width:1px;background:var(--border);margin:0 4px;align-self:stretch;"></span>
+                <button class="toolbar-btn" data-cmd="blockquote">❝</button>
+                <button class="toolbar-btn" data-cmd="code">&lt;/&gt;</button>
+                <button class="toolbar-btn" data-cmd="link">🔗</button>
+                <button class="toolbar-btn" data-cmd="image">🖼</button>
+                <span style="width:1px;background:var(--border);margin:0 4px;align-self:stretch;"></span>
+                <button class="toolbar-btn" data-cmd="undo">↩</button>
+                <button class="toolbar-btn" data-cmd="redo">↪</button>
+              </div>
+              <div class="editor-content" id="editorContent" contenteditable="true" data-placeholder="开始写作..."></div>
+              <div class="editor-actions">
+                <button class="btn btn-ghost btn-sm" id="btnSaveDraft" data-i18n="admin.save">保存草稿</button>
+                <button class="btn btn-primary btn-sm" id="btnPublish" data-i18n="admin.publish">发布文章</button>
+                <button class="btn btn-ghost btn-sm" id="btnCancelEdit" style="display:none;">取消编辑</button>
+                <span id="editorStatus" style="font-size:0.75rem;font-family:var(--font-mono);color:var(--text-muted);margin-left:auto;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Posts List -->
+      <div id="panelPostsList" class="admin-panel" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+          <h2 class="admin-title" style="margin:0;" data-i18n="admin.posts">文章管理</h2>
+          <button class="btn btn-primary btn-sm" id="btnNewPost2">+ 写新文章</button>
+        </div>
+        <div class="admin-posts-list" id="adminPostsList"></div>
+      </div>
+
+      <!-- Panel: Media -->
+      <div id="panelMedia" class="admin-panel" style="display:none;">
+        <h2 class="admin-title" data-i18n="admin.gallery">媒体管理</h2>
+
+        <!-- Video Link Add -->
+        <div class="video-add-form">
+          <div style="font-size:0.8rem;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">
+            ▶ 添加 YouTube / Bilibili 视频
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+            <div class="form-group" style="flex:1;min-width:240px;">
+              <label class="form-label">视频链接或 ID</label>
+              <input type="text" class="form-input" id="videoUrlInput"
+                placeholder="https://youtube.com/watch?v=... 或 BV1xxxx">
+            </div>
+            <div class="form-group" style="min-width:180px;">
+              <label class="form-label">标题（可选）</label>
+              <input type="text" class="form-input" id="videoTitleInput" placeholder="视频标题...">
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnAddVideo" style="height:40px;align-self:flex-end;">+ 添加视频</button>
+          </div>
+          <div id="videoParseMsg" style="font-size:0.75rem;font-family:var(--font-mono);margin-top:8px;min-height:18px;"></div>
+        </div>
+
+        <!-- File Upload Area -->
+        <div class="upload-area" id="uploadArea" style="
+          border: 2px dashed var(--border); border-radius: var(--radius-lg);
+          padding: 48px 24px; text-align: center; cursor: pointer;
+          transition: all var(--transition); margin-bottom: 32px; background: var(--bg-card);">
+          <div style="font-size:2.5rem;margin-bottom:12px;">⊕</div>
+          <div style="font-weight:600;margin-bottom:6px;" data-i18n="admin.dragDrop">拖放文件至此，或点击上传</div>
+          <div style="font-size:0.8rem;color:var(--text-muted);" data-i18n="admin.supportedFormats">支持 JPG, PNG, GIF, WebP, MP4, MOV</div>
+          <input type="file" id="fileInput" multiple accept="image/*,video/*" style="display:none;">
+        </div>
+
+        <!-- Media Grid -->
+        <div class="gallery-main" id="mediaGrid" style="gap:16px;"></div>
+      </div>
+
+      <!-- Panel: Friends Admin -->
+      <div id="panelFriendsAdmin" class="admin-panel" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+          <h2 class="admin-title" style="margin:0;">友链管理</h2>
+        </div>
+
+        <!-- Add friend form -->
+        <div class="guestbook-form-card" style="margin-bottom:32px;">
+          <div class="guestbook-form-title">添加友链</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="form-group">
+                <label class="form-label">网站名称 *</label>
+                <input type="text" class="form-input" id="friendName" placeholder="网站名称...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">网站地址 *</label>
+                <input type="text" class="form-input" id="friendUrl" placeholder="https://...">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div class="form-group">
+                <label class="form-label">一句话描述 *</label>
+                <input type="text" class="form-input" id="friendDesc" placeholder="简短介绍...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">头像（emoji 或图片链接）</label>
+                <input type="text" class="form-input" id="friendAvatar" placeholder="🌟 或 https://...">
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-sm" id="btnAddFriend">+ 添加友链</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Friends list -->
+        <div id="friendsAdminList" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
+
+      <!-- Panel: Settings -->
+      <div id="panelSettings" class="admin-panel" style="display:none;">
+        <h2 class="admin-title" data-i18n="admin.settings">站点设置</h2>
+        <div class="editor-form" style="max-width:540px;">
+          <div class="form-group">
+            <label class="form-label">站点名称</label>
+            <input type="text" class="form-input" id="settingSiteName" value="Wang Suhang">
+          </div>
+          <div class="form-group">
+            <label class="form-label">个人简介</label>
+            <textarea class="form-textarea" id="settingBio" rows="3">在字节跳动日本工作，曾深耕光伏新能源行业。热爱摄影、写作和探索。</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Twitter / X 链接</label>
+            <input type="text" class="form-input" id="settingTwitter" placeholder="https://twitter.com/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">微博链接</label>
+            <input type="text" class="form-input" id="settingWeibo" placeholder="https://weibo.com/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">YouTube 频道</label>
+            <input type="text" class="form-input" id="settingYoutube" placeholder="https://youtube.com/@...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bilibili 主页</label>
+            <input type="text" class="form-input" id="settingBilibili" placeholder="https://space.bilibili.com/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">LinkedIn 链接</label>
+            <input type="text" class="form-input" id="settingLinkedin" placeholder="https://linkedin.com/in/...">
+          </div>
+
+          <div style="margin:24px 0 12px;padding-top:20px;border-top:1px solid var(--border);">
+            <div style="font-size:0.75rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;">
+              💬 Giscus 评论系统配置
+            </div>
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;line-height:1.6;">
+              前往 <a href="https://giscus.app" target="_blank" rel="noopener" style="color:var(--accent);">giscus.app</a> 获取以下配置信息。需要先在 GitHub 仓库中启用 Discussions 功能。
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">GitHub 仓库 (data-repo)</label>
+            <input type="text" class="form-input" id="settingGiscusRepo" placeholder="username/repo">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Repo ID (data-repo-id)</label>
+            <input type="text" class="form-input" id="settingGiscusRepoId" placeholder="R_kgDO...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Discussion Category (data-category)</label>
+            <input type="text" class="form-input" id="settingGiscusCategory" placeholder="General">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category ID (data-category-id)</label>
+            <input type="text" class="form-input" id="settingGiscusCategoryId" placeholder="DIC_kwDO...">
+          </div>
+
+          <button class="btn btn-primary" id="btnSaveSettings" style="margin-top:8px;">保存设置</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/friends.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

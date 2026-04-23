@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "personal-homepage",
+      "runtimeExecutable": "/usr/bin/ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/frankm5air/Documents/CaludeCode/Personal homepage", "-p", "3000"],
+      "port": 3000
+    }
+  ]
+}

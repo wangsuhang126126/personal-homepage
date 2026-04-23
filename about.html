@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于 — Wang Suhang</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech.css?v=2">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="data-stream data-stream-left" aria-hidden="true"></div>
+  <div class="data-stream data-stream-right" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-hex">⬡</span><span class="logo-text">WSH</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link" data-i18n="nav.home">首页</a></li>
+        <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">博客</a></li>
+        <li><a href="gallery.html" class="nav-link" data-i18n="nav.gallery">相册</a></li>
+        <li><a href="friends.html" class="nav-link">友链</a></li>
+        <li><a href="guestbook.html" class="nav-link">留言</a></li>
+        <li><a href="about.html" class="nav-link active" data-i18n="nav.about">关于</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">◐</span></button>
+        <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link" data-i18n="nav.home">首页</a>
+      <a href="blog.html" class="mobile-link" data-i18n="nav.blog">博客</a>
+      <a href="gallery.html" class="mobile-link" data-i18n="nav.gallery">相册</a>
+      <a href="friends.html" class="mobile-link">友链</a>
+      <a href="guestbook.html" class="mobile-link">留言</a>
+      <a href="about.html" class="mobile-link" data-i18n="nav.about">关于</a>
+    </div>
+  </nav>
+
+  <main style="padding-top: var(--nav-height);">
+    <div class="section">
+      <div class="container">
+        <div class="about-grid">
+
+          <!-- Left: Avatar + Terminal -->
+          <div class="about-avatar fade-in">
+            <div style="position:relative;display:inline-block;">
+              <div class="avatar-glow"></div>
+              <div class="avatar-frame" style="font-size:4rem;">王</div>
+            </div>
+
+            <!-- Terminal block -->
+            <div style="margin-top:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary);line-height:1.9;">
+              <div style="display:flex;gap:6px;margin-bottom:12px;">
+                <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:#eab308;"></span>
+                <span style="width:10px;height:10px;border-radius:50%;background:#10b981;"></span>
+              </div>
+              <div><span style="color:var(--accent);">$ </span>whoami</div>
+              <div style="padding-left:12px;">Wang Suhang (王苏杭)</div>
+              <div style="margin-top:4px;"><span style="color:var(--accent);">$ </span>location</div>
+              <div style="padding-left:12px;">Tokyo, Japan 🗼</div>
+              <div style="margin-top:4px;"><span style="color:var(--accent);">$ </span>company</div>
+              <div style="padding-left:12px;color:#00d4ff;">ByteDance Japan</div>
+              <div style="margin-top:4px;"><span style="color:var(--accent);">$ </span>prev_industry</div>
+              <div style="padding-left:12px;">Solar PV / 光伏 ☀️</div>
+              <div style="margin-top:4px;"><span style="color:var(--accent);">$ </span>status</div>
+              <div style="padding-left:12px;display:flex;align-items:center;gap:6px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 6px #10b981;display:inline-block;animation:pulse 2s infinite;"></span>
+                Online &amp; Active
+              </div>
+              <div style="margin-top:4px;"><span style="color:var(--accent);">$ </span>languages</div>
+              <div style="padding-left:12px;">中文 · 日本語 · English</div>
+            </div>
+          </div>
+
+          <!-- Right: Info -->
+          <div class="about-info fade-in">
+            <h1 class="about-name">Wang Suhang</h1>
+            <div class="about-tagline">// ByteDance Japan · 前光伏从业者 · 探索者</div>
+            <p class="about-bio" data-i18n="about.bio">
+              在字节跳动日本工作，曾深耕光伏新能源行业。热爱摄影、写作和技术探索，在两个截然不同的行业间穿行，深感跨界思维的力量。这里是我的个人空间，记录生活、分享见解、留住美好瞬间。
+            </p>
+
+            <!-- Career timeline -->
+            <div style="margin-bottom:28px;">
+              <div style="font-size:0.75rem;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;">// Career Path</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+                  <span style="font-size:1.2rem;">⚡</span>
+                  <div>
+                    <div style="font-weight:600;font-size:0.875rem;">ByteDance Japan</div>
+                    <div style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">现在 · Tokyo</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+                  <span style="font-size:1.2rem;">☀️</span>
+                  <div>
+                    <div style="font-weight:600;font-size:0.875rem;">Solar PV Industry</div>
+                    <div style="font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">光伏新能源行业</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-num" id="statPosts" data-count="0">0</span>
+                <span class="stat-label" data-i18n="about.posts">篇文章</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num" id="statPhotos" data-count="0">0</span>
+                <span class="stat-label" data-i18n="about.photos">张照片</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-num" style="font-size:1.4rem;">JP 🗼</span>
+                <span class="stat-label">Tokyo</span>
+              </div>
+            </div>
+
+            <div class="social-links">
+              <a href="#" class="social-link"><span>𝕏</span> Twitter / X</a>
+              <a href="#" class="social-link"><span>微</span> 微博</a>
+              <a href="#" class="social-link"><span>▶</span> YouTube</a>
+              <a href="#" class="social-link"><span>B</span> Bilibili</a>
+              <a href="#" class="social-link"><span>in</span> LinkedIn</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radar + Skills -->
+        <div class="skills-section fade-in">
+          <div class="section-header" style="text-align:left;">
+            <div class="section-tag">// Skills &amp; Interests</div>
+            <h2 class="section-title" style="font-size:1.8rem;">能力雷达</h2>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:32px;">
+            <!-- Radar chart -->
+            <div class="radar-wrap" style="justify-content:flex-start;">
+              <canvas id="radarChart" style="max-width:340px;width:100%;"></canvas>
+            </div>
+
+            <!-- Skill cards -->
+            <div class="skills-grid" style="margin-top:0;">
+              <div class="skill-card" data-level="0.9">
+                <div class="skill-icon">📷</div>
+                <div class="skill-name">摄影</div>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
+              </div>
+              <div class="skill-card" data-level="0.85">
+                <div class="skill-icon">✍️</div>
+                <div class="skill-name">写作</div>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
+              </div>
+              <div class="skill-card" data-level="0.88">
+                <div class="skill-icon">☀️</div>
+                <div class="skill-name">光伏能源</div>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
+              </div>
+              <div class="skill-card" data-level="0.82">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-name">互联网产品</div>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
+              </div>
+              <div class="skill-card" data-level="0.8">
+                <div class="skill-icon">🗺️</div>
+                <div class="skill-name">旅行 · 日本</div>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
+              </div>
+              <div class="skill-card" data-level="0.75">
+                <div class="skill-icon">🎬</div>
+                <div class="skill-name">视频创作</div>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo-hex">⬡</span><span class="footer-name">Wang Suhang</span></div>
+        <div class="footer-links">
+          <a href="blog.html" data-i18n="nav.blog">博客</a>
+          <a href="gallery.html" data-i18n="nav.gallery">相册</a>
+          <a href="friends.html">友链</a>
+          <a href="guestbook.html">留言</a>
+          <a href="feed.html">RSS</a>
+          <a href="about.html" data-i18n="nav.about">关于</a>
+        </div>
+        <div class="footer-copy">© 2026 Wang Suhang · Tokyo</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/matrix.js?v=3"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/fx-panel.js"></script>
+  <script src="js/about-page.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      drawRadar('radarChart',
+        ['摄影','写作','光伏能源','互联网','旅行','视频'],
+        [0.9, 0.85, 0.88, 0.82, 0.8, 0.75]
+      );
+    });
+  </script>
+</body>
+</html>

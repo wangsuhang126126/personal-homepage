@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSS 订阅 — Wang Suhang</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="alternate" type="application/rss+xml" title="Wang Suhang's Blog" href="/feed.xml">
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="data-stream data-stream-left" aria-hidden="true"></div>
+  <div class="data-stream data-stream-right" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-hex">⬡</span><span class="logo-text">WSH</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link" data-i18n="nav.home">首页</a></li>
+        <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">博客</a></li>
+        <li><a href="gallery.html" class="nav-link" data-i18n="nav.gallery">相册</a></li>
+        <li><a href="friends.html" class="nav-link">友链</a></li>
+        <li><a href="guestbook.html" class="nav-link">留言</a></li>
+        <li><a href="about.html" class="nav-link" data-i18n="nav.about">关于</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">◐</span></button>
+        <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link" data-i18n="nav.home">首页</a>
+      <a href="blog.html" class="mobile-link" data-i18n="nav.blog">博客</a>
+      <a href="gallery.html" class="mobile-link" data-i18n="nav.gallery">相册</a>
+      <a href="friends.html" class="mobile-link">友链</a>
+      <a href="guestbook.html" class="mobile-link">留言</a>
+      <a href="about.html" class="mobile-link" data-i18n="nav.about">关于</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container page-header-content">
+      <div class="page-tag mono">// RSS Feed</div>
+      <h1 class="page-title">RSS 订阅</h1>
+      <p class="page-subtitle">订阅博客，不错过任何更新</p>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="rss-wrap">
+
+      <!-- Info cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px;">
+        <div class="fade-in" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+          <div style="font-size:0.7rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">订阅地址</div>
+          <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-primary);word-break:break-all;">
+            wangsuhang.com/feed.xml
+          </div>
+        </div>
+        <div class="fade-in" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;animation-delay:.07s">
+          <div style="font-size:0.7rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">当前收录</div>
+          <div style="font-size:1.6rem;font-weight:700;font-family:var(--font-mono);color:var(--text-primary);">
+            <span id="rssPostCount">0</span> <span style="font-size:0.85rem;color:var(--text-muted);">篇文章</span>
+          </div>
+        </div>
+        <div class="fade-in" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;animation-delay:.14s">
+          <div style="font-size:0.7rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">更新频率</div>
+          <div style="font-size:0.875rem;color:var(--text-secondary);">不定期更新 — 有感而发，写作驱动</div>
+        </div>
+      </div>
+
+      <!-- How to subscribe -->
+      <div class="fade-in" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:32px;">
+        <div style="font-size:0.75rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:6px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent-glow);display:inline-block;"></span>
+          如何订阅
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+          <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:14px 16px;">
+            <div style="font-weight:600;font-size:0.875rem;margin-bottom:4px;">🟠 Feedly</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">搜索 wangsuhang.com 即可订阅</div>
+          </div>
+          <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:14px 16px;">
+            <div style="font-weight:600;font-size:0.875rem;margin-bottom:4px;">📻 Inoreader</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">粘贴订阅地址到 Add Feed</div>
+          </div>
+          <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:14px 16px;">
+            <div style="font-weight:600;font-size:0.875rem;margin-bottom:4px;">🍎 Apple Podcasts</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">添加 feed URL 到 RSS 栏</div>
+          </div>
+          <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:14px 16px;">
+            <div style="font-weight:600;font-size:0.875rem;margin-bottom:4px;">📖 NetNewsWire</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">macOS/iOS 优秀RSS阅读器</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- XML preview -->
+      <div class="fade-in" style="animation-delay:.1s">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px;">
+          <div style="font-size:0.75rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent-glow);display:inline-block;"></span>
+            Feed 预览
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-ghost" id="rssCopy" style="font-size:0.78rem;padding:6px 14px;">
+              复制 XML
+            </button>
+            <button class="btn btn-primary" id="rssDownload" style="font-size:0.78rem;padding:6px 14px;">
+              下载 feed.xml
+            </button>
+          </div>
+        </div>
+        <div class="rss-xml-block" id="rssXmlContent">
+          // 生成中...
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo-hex">⬡</span><span class="footer-name">Wang Suhang</span></div>
+        <div class="footer-links">
+          <a href="blog.html">博客</a><a href="gallery.html">相册</a>
+          <a href="friends.html">友链</a><a href="guestbook.html">留言</a>
+          <a href="feed.html">RSS</a>
+        </div>
+        <div class="footer-copy">© 2026 Wang Suhang · Tokyo</div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/matrix.js?v=3"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/fx-panel.js"></script>
+  <script src="js/rss.js"></script>
+</body>
+</html>

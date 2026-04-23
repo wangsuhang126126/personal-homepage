@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>留言板 — Wang Suhang</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/tech.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="alternate" type="application/rss+xml" title="Wang Suhang's Blog" href="/feed.html">
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="data-stream data-stream-left" aria-hidden="true"></div>
+  <div class="data-stream data-stream-right" aria-hidden="true"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-hex">⬡</span><span class="logo-text">WSH</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link" data-i18n="nav.home">首页</a></li>
+        <li><a href="blog.html" class="nav-link" data-i18n="nav.blog">博客</a></li>
+        <li><a href="gallery.html" class="nav-link" data-i18n="nav.gallery">相册</a></li>
+        <li><a href="friends.html" class="nav-link">友链</a></li>
+        <li><a href="guestbook.html" class="nav-link active">留言</a></li>
+        <li><a href="about.html" class="nav-link" data-i18n="nav.about">关于</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="zh">中</button>
+          <button class="lang-btn" data-lang="ja">日</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><span class="theme-icon">◐</span></button>
+        <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link" data-i18n="nav.home">首页</a>
+      <a href="blog.html" class="mobile-link" data-i18n="nav.blog">博客</a>
+      <a href="gallery.html" class="mobile-link" data-i18n="nav.gallery">相册</a>
+      <a href="friends.html" class="mobile-link">友链</a>
+      <a href="guestbook.html" class="mobile-link">留言</a>
+      <a href="about.html" class="mobile-link" data-i18n="nav.about">关于</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="container page-header-content">
+      <div class="page-tag mono">// Guestbook</div>
+      <h1 class="page-title">留言板</h1>
+      <p class="page-subtitle">欢迎留下你的足迹 ✨</p>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="guestbook-wrap">
+
+      <!-- Message Form -->
+      <div class="guestbook-form-card fade-in">
+        <div class="guestbook-form-title">写下留言</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label class="form-label">昵称 *</label>
+              <input type="text" class="form-input" id="gbName" placeholder="你的名字..." maxlength="30">
+            </div>
+            <div class="form-group">
+              <label class="form-label">网站（可选）</label>
+              <input type="text" class="form-input" id="gbSite" placeholder="https://...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">留言内容 *</label>
+            <textarea class="form-textarea" id="gbContent" rows="4"
+              placeholder="写下你想说的话... 可以是问好、交流想法、申请友链等 😊"
+              maxlength="500"></textarea>
+            <div style="text-align:right;font-size:0.72rem;font-family:var(--font-mono);color:var(--text-muted);margin-top:4px;">
+              <span id="gbCount">0</span>/500
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <button class="btn btn-primary" id="gbSubmit">
+              发送留言 →
+            </button>
+            <span style="font-size:0.75rem;color:var(--text-muted);">
+              留言仅供展示，请勿包含敏感信息
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages list -->
+      <div style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:0.8rem;font-family:var(--font-mono);color:var(--text-muted);">
+          // <span id="gbTotal">0</span> 条留言
+        </div>
+      </div>
+
+      <div class="messages-list" id="messagesList">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo-hex">⬡</span><span class="footer-name">Wang Suhang</span></div>
+        <div class="footer-links">
+          <a href="blog.html">博客</a><a href="gallery.html">相册</a>
+          <a href="friends.html">友链</a><a href="guestbook.html">留言</a>
+          <a href="feed.html">RSS</a>
+        </div>
+        <div class="footer-copy">© 2026 Wang Suhang · Tokyo</div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/matrix.js?v=3"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/video.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/fx-panel.js"></script>
+  <script src="js/guestbook.js"></script>
+</body>
+</html>
