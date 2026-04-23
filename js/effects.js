@@ -176,7 +176,7 @@ function drawRadar(canvasId, labels, values, color1 = '#00d4ff', color2 = '#7c3a
 
 // ── Init all effects ─────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  initBoot();
+  // initBoot() disabled — removed intro animation
   initTilt();
   initCounters();
 

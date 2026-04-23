@@ -1637,6 +1637,14 @@ ul { list-style: none; }
   .nav-links { display: none; }
   .menu-toggle { display: flex; }
 
+  /* Hide less important nav buttons on mobile */
+  .fx-toggle { display: none !important; }
+  .bg-switcher-btn { display: none !important; }
+
+  /* Make lang switcher more compact */
+  .lang-switcher { padding: 2px; gap: 1px; }
+  .lang-btn { padding: 3px 7px; font-size: 0.7rem; }
+
   .hero-title { font-size: 2.2rem; }
 
   .posts-grid { grid-template-columns: 1fr; }
