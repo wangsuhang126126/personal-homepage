@@ -5,8 +5,8 @@
  *           node opacity, edge opacity, particle on/off.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // Skip on mobile — nav bar is already crowded
-  if (window.matchMedia('(max-width: 768px)').matches) return;
+  // Disabled — fx panel removed along with neural net / particles
+  return;
 
   // ── Inject button + panel into nav ──────────────────────
   const navControls = document.querySelector('.nav-controls');

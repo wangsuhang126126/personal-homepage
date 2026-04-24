@@ -35,14 +35,8 @@ const NeuralNet = {
   },
 
   init() {
-    this.loadSettings();
-    this.canvas = document.getElementById('matrix');
-    if (!this.canvas) return;
-    this.ctx = this.canvas.getContext('2d');
-    this.canvas.style.opacity = this.settings.enabled ? '1' : '0';
-    this.resize();
-    this.animate();
-    window.addEventListener('resize', () => this.resize());
+    // Disabled — neural network & energy pulse removed
+    return;
   },
 
   resize() {
