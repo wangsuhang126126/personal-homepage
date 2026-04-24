@@ -163,6 +163,9 @@
   }
 
   function init() {
+    // Skip on mobile — nav bar is already crowded
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+
     // Restore saved theme
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {

@@ -6,6 +6,8 @@ const ParticleSystem = {
   mouse: { x: -9999, y: -9999 },
 
   init() {
+    // Disabled — particles removed
+    return;
     this.canvas = document.getElementById('particles');
     if (!this.canvas) return;
     this.ctx = this.canvas.getContext('2d');

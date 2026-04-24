@@ -5,6 +5,9 @@
  *           node opacity, edge opacity, particle on/off.
  */
 document.addEventListener('DOMContentLoaded', () => {
+  // Disabled — fx panel removed along with neural net / particles
+  return;
+
   // ── Inject button + panel into nav ──────────────────────
   const navControls = document.querySelector('.nav-controls');
   if (!navControls) return;

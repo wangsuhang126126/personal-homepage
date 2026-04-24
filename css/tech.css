@@ -22,23 +22,7 @@
   opacity: 1;
 }
 
-/* ── Scan-line sweep on hero ── */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.6) 50%, transparent 100%);
-  animation: scanSweep 6s linear infinite;
-  pointer-events: none;
-  z-index: 2;
-}
-@keyframes scanSweep {
-  0%   { top: 0%;   opacity: 0; }
-  5%   { opacity: 1; }
-  95%  { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
-}
+/* ── Scan-line sweep on hero — disabled ── */
 
 /* ── Hexagonal grid on section-dark ── */
 .section-dark {
