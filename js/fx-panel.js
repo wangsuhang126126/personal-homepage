@@ -5,6 +5,9 @@
  *           node opacity, edge opacity, particle on/off.
  */
 document.addEventListener('DOMContentLoaded', () => {
+  // Skip on mobile — nav bar is already crowded
+  if (window.matchMedia('(max-width: 768px)').matches) return;
+
   // ── Inject button + panel into nav ──────────────────────
   const navControls = document.querySelector('.nav-controls');
   if (!navControls) return;
